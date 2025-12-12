@@ -1,56 +1,107 @@
-# 📑 Assignment Overview
+# Comprehensive Clustering Project: From Foundations to Frontier
 
-This assignment explores clustering techniques ranging from fundamental algorithms implemented from scratch to state-of-the-art methods using pre-trained models and embeddings. Each notebook includes proper documentation, visualizations, and clustering quality metrics.
+This repository contains a series of Google Colab notebooks exploring the full spectrum of clustering techniques. The project moves from fundamental algorithms implemented from scratch to state-of-the-art methods utilizing Large Language Model (LLM) embeddings and multi-modal foundation models like ImageBind.
+
+## 📂 Project Structure
+
+The project is divided into three logical phases: Classical Foundations, Professional Efficiency & Outliers, and the Deep Learning Frontier.
 
 ---
 
-## 📂 Assignment Structure
+### Phase 1: Classical Foundations
 
-### Part E: Multi-Modal Semantic Clustering
-**File:** `imagebind_multimodal_clustering.ipynb`
+#### Part A: K-Means Clustering from Scratch
+**File:** `kmeans_scratch.ipynb`
+* **Description:** Implementation of the K-Means algorithm using only fundamental Python libraries like NumPy to understand the iterative "Assign and Update" logic.
+* **Key Concepts:** Euclidean distance computation, random centroid initialization, convergence criteria, and Silhouette analysis.
+* **Libraries Used:** `numpy`, `matplotlib`, `scikit-learn` (for evaluation only).
 
-* **Implementation of ImageBind Foundation Model**: Leveraging Meta AI’s `imagebind_huge` architecture to extract high-dimensional embeddings across different modalities.
-* **Cross-Modality Alignment**: Mapping `.jpg` visual data and `.wav` audio data into a singular, shared neighborhood.
-* **K-Means Integration**: Applying unsupervised clustering on joint embeddings to group distinct media types by semantic concept rather than file format.
-* **Advanced Environment Patching**: Implementing custom loaders to bypass `torchcodec` dependencies and resolving `torchvision` versioning conflicts.
+#### Part B: Hierarchical Clustering
+**File:** `hierarchical_clustering.ipynb`
+* **Description:** Exploring agglomerative clustering to build a "family tree" of data relationships.
+* **Key Concepts:** Dendrogram visualization, linkage methods (Ward, Single, Complete), and distance metrics.
+* **Libraries Used:** `scipy`, `scikit-learn`.
 
-**Key Concepts:**
-* Joint Embedding Spaces (Visual-Audio Alignment)
-* Surgical Tensor Reshaping for 1D Spec-Transformers
-* Semantic vs. Feature-based Clustering
-* Zero-shot Modality Transfer
+#### Part C: Gaussian Mixture Models (GMM)
+**File:** `gaussian_mixture_models.ipynb`
+* **Description:** Moving from "hard" clustering to "soft" probabilistic clustering.
+* **Key Concepts:** Expectation-Maximization (EM) algorithm, handling elliptical cluster shapes, and model selection via BIC/AIC.
+* **Libraries Used:** `scikit-learn`, `seaborn`.
+
+---
+
+### Phase 2: Professional Efficiency & Outliers
+
+#### Part D: DBSCAN Clustering with PyCaret
+**File:** `dbscan_pycaret.ipynb`
+* **Description:** Utilizing a low-code library to identify density-based clusters of arbitrary shapes.
+* **Key Concepts:** Density reachability, automatic noise/outlier detection, and automated ML workflows.
+* **Libraries Used:** `pycaret`, `pandas`.
+
+#### Part E: Anomaly Detection with PyOD
+**File:** `anomaly_detection_pyod.ipynb`
+* **Description:** Shifting focus from grouping commonalities to identifying the "misfits" in a dataset.
+* **Key Concepts:** Isolation Forest algorithm, contamination rates, and anomaly score visualization.
+* **Libraries Used:** `pyod`, `matplotlib`.
+
+---
+
+### Phase 3: The Deep Learning Frontier
+
+#### Part F: Time-Series Clustering
+**File:** `timeseries_clustering.ipynb`
+* **Description:** Grouping temporal data where the sequence and trend are the primary features.
+* **Key Concepts:** Dynamic Time Warping (DTW), time-series scaling, and Barycenter trend visualization.
+* **Libraries Used:** `tslearn`, `matplotlib`.
+
+#### Part G: Document Clustering with LLM Embeddings
+**File:** `llm_document_clustering.ipynb`
+* **Description:** Using a pre-trained Transformer model to cluster text based on semantic meaning rather than keyword matching.
+* **Key Concepts:** High-dimensional text embeddings, dimensionality reduction (PCA), and semantic similarity.
+* **Libraries Used:** `sentence-transformers`, `scikit-learn`.
+
+#### Part H: Image Clustering with ImageBind
+**File:** `image_clustering_imagebind.ipynb`
+* **Description:** Utilizing Meta AI’s ImageBind model to categorize visual content using deep vision transformer embeddings.
+* **Key Concepts:** Vision Transformer (ViT) features, zero-shot categorization, and semantic visual grouping.
+* **Libraries Used:** `torch`, `imagebind`, `torchvision`.
+
+#### Part I: Audio Clustering with ImageBind
+**File:** `audio_clustering_imagebind.ipynb`
+* **Description:** Applying the same foundation model to categorize complex sound patterns into meaningful groups.
+* **Key Concepts:** Audio spectrogram processing, acoustic fingerprints, and cross-modal embedding consistency.
+* **Libraries Used:** `torch`, `imagebind`, `torchaudio`.
 
 ---
 
 ## 📊 Clustering Quality Metrics
 
-To evaluate the performance of the semantic alignment, the following metrics are utilized within the notebook:
+Each notebook includes rigorous evaluation to ensure cluster validity:
+* **Silhouette Score:** Measures how similar a point is to its own cluster compared to others (Range: -1 to 1).
+* **Inertia (SSE):** Used in K-Means to measure the tightness of clusters.
+* **BIC/AIC:** Used for Gaussian Mixture Models to balance model fit with complexity.
+* **Dendrograms:** Visual verification of hierarchical separation.
+* **PCA/t-SNE:** Dimensionality reduction used to visualize high-dimensional clusters in 2D/3D space.
 
-* **Semantic Consistency**: Verification that different modalities of the same concept (e.g., Dog Image + Dog Audio) are assigned to the same Cluster ID.
-* **Cosine Similarity Analysis**: Measuring the angular distance between vectors in the joint space to quantify how "related" the model perceives the audio and image to be.
-* **Inertia (Within-Cluster Sum of Squares)**: Assessing the compactness of the semantic clusters formed in the 1024-dimensional space.
+## 💾 Datasets
 
----
+This project utilizes a mix of synthetic and real-world data:
+* **Synthetic:** `make_blobs` and `make_moons` for algorithm benchmarking.
+* **Time-Series:** The "Trace" dataset for signal pattern recognition.
+* **Text:** Curated document lists for semantic testing.
+* **Multi-modal:** Official ImageBind assets including dog/car images and corresponding WAV audio files.
 
-## 🗄️ Datasets
+## 🧠 Key Learning Outcomes
 
-This implementation utilizes a specialized multi-modal sample set:
-* **Vision Data**: High-resolution imagery representing distinct classes (e.g., Dog and Car).
-* **Audio Data**: Waveform files (.wav) sampled at 16kHz, capturing environmental sounds corresponding to the visual classes (e.g., barking, engine idling).
-* **Preprocessing**: All data is normalized to 16kHz mono audio and 224x224 patches for vision to meet the ImageBind encoder requirements.
-
----
-
-## 💡 Key Learning Outcomes
-
-* **Modality Agnosticism**: Understanding how a single model can process diverse data types without requiring separate, specialized heads for each task.
-* **Handling Library Deprecation**: Gained experience in "Monkey-Patching" and overriding internal library loaders to maintain compatibility with evolving PyTorch ecosystems.
-* **Vector Space Intuition**: Visualizing how high-dimensional vectors can represent abstract "concepts" (like "Dogginess") rather than just raw pixel or frequency data.
-
----
+1. **Algorithmic Depth:** Gained a deep understanding of the mathematical foundations of clustering by implementing K-Means from scratch.
+2. **Method Versatility:** Learned to select the right algorithm (Density-based, Probabilistic, or Hierarchical) based on the specific shape and nature of the data.
+3. **Advanced Representations:** Mastered the use of LLM and Foundation Model embeddings to cluster complex, unstructured data like text, images, and audio.
+4. **Professional Evaluation:** Developed the ability to quantitatively assess clustering quality using industry-standard metrics.
 
 ## 🔗 References
 
-* **Meta AI Research**: [ImageBind: One Embedding Space To Bind Them All](https://arxiv.org/abs/2305.06755)
-* **GitHub Repository**: [facebookresearch/ImageBind](https://github.com/facebookresearch/ImageBind)
-* **Scikit-Learn Documentation**: [K-Means Clustering Algorithms](https://scikit-learn.org/stable/modules/clustering.html#k-means)
+* [Scikit-Learn Clustering Documentation](https://scikit-learn.org/stable/modules/clustering.html)
+* [PyCaret Clustering Tutorial](https://pycaret.gitbook.io/docs/get-started/tutorials)
+* [Sentence-Transformers (SBERT)](https://www.sbert.net/)
+* [Meta AI ImageBind Repository](https://github.com/facebookresearch/ImageBind)
+* [Python Data Science Handbook (Jake VanderPlas)](https://jakevdp.github.io/PythonDataScienceHandbook/)
