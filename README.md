@@ -2,7 +2,7 @@
 
 This repository contains a series of Google Colab notebooks exploring the full spectrum of clustering techniques. The project moves from fundamental algorithms implemented from scratch to state-of-the-art methods utilizing Large Language Model (LLM) embeddings and multi-modal foundation models like ImageBind.
 
-## 📂 Project Structure
+## 📂 Assignment Structure
 
 The project is divided into three logical phases: Classical Foundations, Professional Efficiency & Outliers, and the Deep Learning Frontier.
 
